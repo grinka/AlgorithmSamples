@@ -14,9 +14,12 @@ namespace AlgorithmSamples.BinaryTreeSort
             }
             else
             {
-                _root.AttachValue( value );
+                _root.AddValue( value );
             }
         }
+
+        public T[] SortAsc => _root.SortedAscending;
+        public T[] SortDesc => _root.SortedDescending;
 
         public override string ToString( )
         {
