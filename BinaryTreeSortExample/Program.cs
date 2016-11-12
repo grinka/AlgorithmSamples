@@ -15,7 +15,7 @@ namespace AlgorithmSamples.BinaryTreeSort
             tree.AddValue( 5 );
             tree.AddValue( 4 );
             Console.WriteLine( tree.ToString( ) );
-            Console.WriteLine( tree.SortAsc.Aggregate< int, string >( string.Empty,
+            Console.WriteLine( tree.SortedAscending.Aggregate< int, string >( string.Empty,
                 ( current, item ) => $"{current}, {item}" ) );
             Console.ReadKey( );
         }

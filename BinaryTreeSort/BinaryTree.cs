@@ -18,8 +18,8 @@ namespace AlgorithmSamples.BinaryTreeSort
             }
         }
 
-        public T[] SortAsc => _root.SortedAscending;
-        public T[] SortDesc => _root.SortedDescending;
+        public T[] SortedAscending => _root.SortedAscending;
+        public T[] SortedDescending => _root.SortedDescending;
 
         public override string ToString( )
         {

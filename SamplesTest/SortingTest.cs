@@ -15,7 +15,7 @@ namespace SamplesTest
             tree.AddValue( 1 );
             tree.AddValue( 12 );
             tree.AddValue( 7 );
-            var ret = tree.SortAsc;
+            var ret = tree.SortedAscending;
             ret.Aggregate<int, string>(string.Empty, ( item, s ) => $"{s} {item}" );
         }
     }
