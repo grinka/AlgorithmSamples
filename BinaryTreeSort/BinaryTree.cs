@@ -2,9 +2,14 @@
 
 namespace AlgorithmSamples.BinaryTreeSort
 {
+    /// <summary>
+    /// Contains the binary tree of the comparable items. Allows ascending and descending sotring
+    /// of the unbalanced tree.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BinaryTree< T > where T : IComparable
     {
-        private Node< T > _root;
+        private INode< T > _root;
 
         public void AddValue( T value )
         {
