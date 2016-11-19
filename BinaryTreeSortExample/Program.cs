@@ -2,12 +2,20 @@
 using System.Linq;
 using AlgorithmSamples.BinaryTreeSort;
 
-namespace AlgorithmSamples.BinaryTreeSort
-{
-    class Program
-    {
-        static void Main( string[] args )
-        {
+namespace AlgorithmSamples.BinaryTreeSort {
+    class Program {
+        static void Main( string[] args ) {
+            //TestBinaryTree( );
+            new Program( ).TestShift( 125 );
+        }
+
+        private void TestShift( int d ) {
+            Console.WriteLine( d );
+            Console.WriteLine( d >> 5 );
+            Console.ReadLine( );
+        }
+
+        private static void TestBinaryTree( ) {
             var tree = new BinaryTree< int >( );
             tree.AddValue( 1 );
             tree.AddValue( 2 );
@@ -15,7 +23,8 @@ namespace AlgorithmSamples.BinaryTreeSort
             tree.AddValue( 5 );
             tree.AddValue( 4 );
             Console.WriteLine( tree.ToString( ) );
-            Console.WriteLine( tree.SortedAscending.Aggregate< int, string >( string.Empty,
+            Console.WriteLine( tree.SortedAscending.Aggregate< int, string >(
+                string.Empty,
                 ( current, item ) => $"{current}, {item}" ) );
             Console.ReadKey( );
         }
