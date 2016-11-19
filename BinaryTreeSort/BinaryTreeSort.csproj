@@ -41,9 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryTree.cs" />
-    <Compile Include="INode.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="NonComparableNode.cs" />
+    <Compile Include="NonComparableTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryTreeCommon\BinaryTreeCommon.csproj">
+      <Project>{a44f5e5c-69d1-4de5-91ea-d556636674b3}</Project>
+      <Name>BinaryTreeCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

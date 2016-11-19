@@ -1,79 +1,38 @@
 ﻿using System;
+using AlgorithmSamples.BinaryTreeCommon;
 
 namespace AlgorithmSamples.BinaryTreeSort
 {
-    internal class Node< T > : INode< T > where T : IComparable
+    internal class Node< T > : SortableBinaryTreeNode< T > where T : IComparable
     {
-        #region Local fields
-
-        private readonly T _value;
-        private Node< T > _leftChild;
-        private Node< T > _rightChild;
-
-        #endregion
-
         #region Constructors
-        public Node( T value )
+        public Node( T value ) : base(value)
         {
-            _value = value;
         }
         #endregion
 
-        #region Public Properties
-
-        public bool IsLeaf => _leftChild == null && _rightChild == null;
-
-        public int Size => (_leftChild?.Size ?? 0) + 1 + (_rightChild?.Size ?? 0);
-
-        public bool IsEmpty => IsLeaf;
-
-        public T[] SortedAscending => SortedAsc( this );
-
-        public T[] SortedDescending => SortedDesc( this );
-
-        #endregion
-
-        private T[] GetSorted( Node< T > firstPart, Node< T > secondPart, Func< Node< T >, T[] > sortedFunc )
+        public override void AddValue( T value )
         {
-            var returnValue = new T[Size];
-            var idx = 0;
-            if ( firstPart != null )
+            if ( Value.CompareTo( value ) >= 0 )
             {
-                var firstPartArray = sortedFunc( firstPart );
-                firstPartArray.CopyTo( returnValue, idx );
-                idx += firstPartArray.Length;
-            }
-            returnValue[ idx++ ] = _value;
-            sortedFunc( secondPart )?.CopyTo( returnValue, idx );
-            return returnValue;
-        }
-
-        private static T[] SortedAsc( Node< T > node ) => node?.GetSorted( node._leftChild, node._rightChild, SortedAsc );
-
-        private static T[] SortedDesc( Node< T > node ) => node?.GetSorted( node._rightChild, node._leftChild, SortedDesc );
-
-        public void AddValue( T value )
-        {
-            if ( _value.CompareTo( value ) >= 0 )
-            {
-                if ( _leftChild == null )
+                if ( LeftChild == null )
                 {
-                    _leftChild = new Node< T >( value );
+                    LeftChild = new Node< T >( value );
                 }
                 else
                 {
-                    _leftChild.AddValue( value );
+                    LeftChild.AddValue( value );
                 }
             }
             else
             {
-                if ( _rightChild == null )
+                if ( RightChild == null )
                 {
-                    _rightChild = new Node< T >( value );
+                    RightChild = new Node< T >( value );
                 }
                 else
                 {
-                    _rightChild.AddValue( value );
+                    RightChild.AddValue( value );
                 }
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using AlgorithmSamples.BinaryTreeCommon;
 
 namespace AlgorithmSamples.BinaryTreeSort
 {
@@ -9,7 +10,7 @@ namespace AlgorithmSamples.BinaryTreeSort
     /// <typeparam name="T"></typeparam>
     public class BinaryTree< T > where T : IComparable
     {
-        private INode< T > _root;
+        private ISortableNode< T > _root;
 
         public void AddValue( T value )
         {
