@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISortableNode.cs" />
+    <Compile Include="SortableBinaryTree.cs" />
     <Compile Include="SortableBinaryTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

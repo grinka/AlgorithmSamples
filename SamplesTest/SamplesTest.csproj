@@ -54,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BinaryTreeCommon\BinaryTreeCommon.csproj">
+      <Project>{a44f5e5c-69d1-4de5-91ea-d556636674b3}</Project>
+      <Name>BinaryTreeCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BinaryTreeSort\BinaryTreeSort.csproj">
       <Project>{3E26925F-4D81-4AE1-870D-541846211423}</Project>
       <Name>BinaryTreeSort</Name>
