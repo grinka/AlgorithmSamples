@@ -41,20 +41,20 @@ namespace SamplesTest {
             Assert.AreEqual(":two:four:One:six:five:eight:three:seven", strValue);
         }
 
-        private static NonComparableTree<string> BuildTreeOneTwoThreeSecondary()
+        private static NonComparableBinaryTree<string> BuildTreeOneTwoThreeSecondary()
         {
-            var tree = new NonComparableTree<string>(x => x.Substring(1));
+            var tree = new NonComparableBinaryTree<string>(x => x.Substring(1));
             FillTreeWithValues(tree);
             return tree;
         }
 
-        private static NonComparableTree<string> BuildTreeOneTwoThree() {
-            var tree = new NonComparableTree<string>(x => x);
+        private static NonComparableBinaryTree<string> BuildTreeOneTwoThree() {
+            var tree = new NonComparableBinaryTree<string>(x => x);
             FillTreeWithValues(tree);
             return tree;
         }
 
-        private static void FillTreeWithValues(NonComparableTree<string> tree) {
+        private static void FillTreeWithValues(NonComparableBinaryTree<string> tree) {
             tree.AddValue("One");
             tree.AddValue("two");
             tree.AddValue("three");

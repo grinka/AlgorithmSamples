@@ -3,10 +3,10 @@
 namespace AlgorithmSamples.BinaryTreeSort {
     using System;
 
-    public class NonComparableTree<T> : SortableBinaryTree<T> {
+    public class NonComparableBinaryTree<T> : SortableBinaryTree<T> {
         private readonly Func<T, IComparable> _compareFunc;
 
-        public NonComparableTree(Func<T, IComparable> compareFunc) {
+        public NonComparableBinaryTree(Func<T, IComparable> compareFunc) {
             _compareFunc = compareFunc;
         }
 

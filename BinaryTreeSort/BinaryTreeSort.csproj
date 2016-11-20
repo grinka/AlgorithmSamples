@@ -43,7 +43,7 @@
     <Compile Include="BinaryTree.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NonComparableNode.cs" />
-    <Compile Include="NonComparableTree.cs" />
+    <Compile Include="NonComparableBinaryTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
