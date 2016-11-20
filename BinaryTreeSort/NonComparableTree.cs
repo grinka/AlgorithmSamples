@@ -13,6 +13,5 @@ namespace AlgorithmSamples.BinaryTreeSort {
         protected override ISortableNode<T> CreateRootNode(T value) {
             return new NonComparableNode<T>(value, _compareFunc);
         }
-
     }
 }
