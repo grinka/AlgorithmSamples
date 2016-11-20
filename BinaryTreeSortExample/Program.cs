@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using AlgorithmSamples.BinaryTreeSort;
 
 namespace AlgorithmSamples.BinaryTreeSort {
     class Program {

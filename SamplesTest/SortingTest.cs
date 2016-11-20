@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AlgorithmSamples.BinaryTreeSort;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

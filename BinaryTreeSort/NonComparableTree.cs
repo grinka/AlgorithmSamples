@@ -1,24 +1,18 @@
-﻿namespace AlgorithmSamples.BinaryTreeSort {
+﻿using AlgorithmSamples.BinaryTreeCommon;
+
+namespace AlgorithmSamples.BinaryTreeSort {
     using System;
 
-    public class NonComparableTree<T> {
-        private NonComparableNode<T> _rootNode;
+    public class NonComparableTree<T> : SortableBinaryTree<T> {
         private readonly Func<T, IComparable> _compareFunc;
 
         public NonComparableTree(Func<T, IComparable> compareFunc) {
             _compareFunc = compareFunc;
         }
 
-        public void AddValue(T value) {
-            if (_rootNode == null) {
-                _rootNode = new NonComparableNode<T>(value, _compareFunc);
-            } else {
-                _rootNode.AddValue(value);
-            }
+        protected override ISortableNode<T> CreateRootNode(T value) {
+            return new NonComparableNode<T>(value, _compareFunc);
         }
 
-        public T[] SortedAscending => _rootNode?.SortedAscending;
-
-        public T[] SortedDescending => _rootNode?.SortedDescending;
     }
 }
