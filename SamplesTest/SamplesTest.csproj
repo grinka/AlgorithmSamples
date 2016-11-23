@@ -64,6 +64,10 @@
       <Project>{3E26925F-4D81-4AE1-870D-541846211423}</Project>
       <Name>BinaryTreeSort</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommonExtensions\CommonExtensions.csproj">
+      <Project>{6b6a14b6-06a1-40a5-8857-e10e944b7ea1}</Project>
+      <Name>CommonExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sort\Sort.csproj">
       <Project>{1aa2010f-db6f-4bc1-be36-5e2f0126d7ab}</Project>
       <Name>Sort</Name>

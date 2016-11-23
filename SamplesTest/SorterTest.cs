@@ -1,6 +1,8 @@
 ﻿using System;
 using System.CodeDom;
+using System.Linq;
 using Algorithm.Sort.Bobble;
+using CommonExtensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SamplesTest {
@@ -21,7 +23,7 @@ namespace SamplesTest {
         public void TestBobbleSorting1() {
             var sorter = new BobbleSorter<int>(InitArray1);
             var sorted = sorter.GetSorted();
-            Assert.IsTrue(EqualArrays(sorted, array1SortedAsc));
+            Assert.IsTrue(sorted.SameArray(array1SortedAsc));
         }
 
         [TestCategory("Sorting.Bobble")]
@@ -30,7 +32,7 @@ namespace SamplesTest {
             var sorter = new BobbleSorter<int>();
             sorter.AddRange(InitArray1);
             var sorted = sorter.GetSorted();
-            Assert.IsTrue(EqualArrays(sorted, array1SortedAsc));
+            Assert.IsTrue(sorted.SameArray(array1SortedAsc));
         }
 
         [TestCategory("Sorting.Bobble")]
@@ -39,7 +41,7 @@ namespace SamplesTest {
             var sorter = new BobbleSorter<int>(InitArray1Half1);
             sorter.AddRange(Initarray1Half2);
             var sorted = sorter.GetSorted();
-            Assert.IsTrue(EqualArrays(sorted, array1SortedAsc));
+            Assert.IsTrue(sorted.SameArray(array1SortedAsc));
         }
 
         [TestCategory("Sorting.Bobble")]
@@ -51,7 +53,7 @@ namespace SamplesTest {
             }
 
             var sorted = sorter.GetSorted();
-            Assert.IsTrue(EqualArrays(sorted, array1SortedAsc));
+            Assert.IsTrue(sorted.SameArray(array1SortedAsc));
         }
 
         [TestCategory("Sorting.Bobble")]
@@ -63,19 +65,7 @@ namespace SamplesTest {
             }
 
             var sorted = sorter.GetSorted();
-            Assert.IsTrue(EqualArrays(sorted, array1SortedAsc));
-        }
-
-        private bool EqualArrays(int[] a1, int[] a2) {
-            if (a1.Length != a2.Length) {
-                return false;
-            }
-            for (var idx = 0; idx < a1.Length; idx++) {
-                if (a1[idx] != a2[idx]) {
-                    return false;
-                }
-            }
-            return true;
+            Assert.IsTrue(sorted.SameArray(array1SortedAsc));
         }
     }
 }
