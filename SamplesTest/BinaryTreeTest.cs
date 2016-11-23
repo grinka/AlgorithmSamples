@@ -4,8 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SamplesTest {
     [TestClass]
-    public class SortingTest {
+    public class BinaryTreeTest {
         [TestMethod]
+        [TestCategory("BinaryTree")]
         public void TestBinaryTreeMethodAsc1() {
             var tree = new BinaryTree<int>();
             tree.AddValue(1);
@@ -16,6 +17,7 @@ namespace SamplesTest {
         }
 
         [TestMethod]
+        [TestCategory("BinaryTree")]
         public void TestNoncomparableTree1() {
             var strValue = BuildTreeOneTwoThree().SortedAscending.Aggregate(
                 string.Empty,
@@ -24,8 +26,8 @@ namespace SamplesTest {
         }
 
         [TestMethod]
-        public void TestNoncomparableTree2()
-        {
+        [TestCategory("BinaryTree")]
+        public void TestNoncomparableTree2() {
             var strValue = BuildTreeOneTwoThree().SortedDescending.Aggregate(
                 string.Empty,
                 (accumulator, newValue) => $"{accumulator}:{newValue}");
@@ -33,16 +35,15 @@ namespace SamplesTest {
         }
 
         [TestMethod]
-        public void TestNoncomparableTree3()
-        {
+        [TestCategory("BinaryTree")]
+        public void TestNoncomparableTree3() {
             var strValue = BuildTreeOneTwoThreeSecondary().SortedDescending.Aggregate(
                 string.Empty,
                 (accumulator, newValue) => $"{accumulator}:{newValue}");
             Assert.AreEqual(":two:four:One:six:five:eight:three:seven", strValue);
         }
 
-        private static NonComparableTree<string> BuildTreeOneTwoThreeSecondary()
-        {
+        private static NonComparableTree<string> BuildTreeOneTwoThreeSecondary() {
             var tree = new NonComparableTree<string>(x => x.Substring(1));
             FillTreeWithValues(tree);
             return tree;

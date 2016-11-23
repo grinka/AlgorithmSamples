@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SamplesTest</RootNamespace>
     <AssemblyName>SamplesTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,7 +51,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SortingTest.cs" />
+    <Compile Include="SorterTest.cs" />
+    <Compile Include="BinaryTreeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +63,10 @@
     <ProjectReference Include="..\BinaryTreeSort\BinaryTreeSort.csproj">
       <Project>{3E26925F-4D81-4AE1-870D-541846211423}</Project>
       <Name>BinaryTreeSort</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sort\Sort.csproj">
+      <Project>{1aa2010f-db6f-4bc1-be36-5e2f0126d7ab}</Project>
+      <Name>Sort</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -12,7 +12,7 @@ namespace AlrogithmSamples.BinnaryTreeBalanced
             _compareElement = compareElement;
         }
 
-        public void AddValue( T value )
+        public override void AddValue( T value )
         {
             if ( _compareElement( value ).CompareTo( _compareElement( Value ) ) >= 1 )
             {
