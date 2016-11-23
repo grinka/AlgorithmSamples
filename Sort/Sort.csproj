@@ -44,11 +44,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Common\ISorter.cs" />
     <Compile Include="Common\SorterBase.cs" />
+    <Compile Include="Heap\HeapSorter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quick\QuickSorter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Heap\" />
     <Folder Include="Shell\" />
     <Folder Include="Smooth\" />
   </ItemGroup>
