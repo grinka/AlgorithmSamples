@@ -2,6 +2,10 @@
 using System.CodeDom;
 using System.Linq;
 using Algorithm.Sort.Bobble;
+using Algorithm.Sort.Heap;
+using Algorithm.Sort.Quick;
+using Algorithm.Sort.Shell;
+using Algorithm.Sort.Smooth;
 using CommonExtensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -67,5 +71,37 @@ namespace SamplesTest {
             var sorted = sorter.GetSorted();
             Assert.IsTrue(sorted.SameArray(array1SortedAsc));
         }
+
+        [TestCategory("Sorting.Heap")]
+        [TestMethod]
+        public void TestHeapSorting1() {
+            var sorter = new HeapSorter<int>(InitArray1);
+            Assert.IsTrue(array1SortedAsc.SameArray(sorter.GetSorted()));
+        }
+
+        [TestCategory("Sorting.Quick")]
+        [TestMethod]
+        public void TestQuickSorting1()
+        {
+            var sorter = new QuickSorter<int>(InitArray1);
+            Assert.IsTrue(array1SortedAsc.SameArray(sorter.GetSorted()));
+        }
+
+        [TestCategory("Sorting.Shell")]
+        [TestMethod]
+        public void TestShellSorting1()
+        {
+            var sorter = new ShellSorter<int>(InitArray1);
+            Assert.IsTrue(array1SortedAsc.SameArray(sorter.GetSorted()));
+        }
+
+        [TestCategory("Sorting.Smooth")]
+        [TestMethod]
+        public void TestSmoothSorting1()
+        {
+            var sorter = new SmoothSorter<int>(InitArray1);
+            Assert.IsTrue(array1SortedAsc.SameArray(sorter.GetSorted()));
+        }
+
     }
 }

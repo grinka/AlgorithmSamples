@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Algorithm.Sort.Common;
 
-namespace Algorithm.Sort.Heap {
-    public class HeapSorter<T> : SorterBase<T> where T : IComparable {
-        public HeapSorter() {}
+namespace Algorithm.Sort.Shell {
+    public class ShellSorter<T> : SorterBase<T> where T : IComparable {
+        public ShellSorter() {}
 
-        public HeapSorter(T[] initArray) : base(initArray) {}
+        public ShellSorter(T[] initArray) : base(initArray) {}
 
         public override T[] GetSorted() {
             throw new NotImplementedException();
