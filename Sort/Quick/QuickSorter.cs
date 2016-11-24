@@ -16,6 +16,8 @@ namespace Algorithm.Sort.Quick {
 
         private void QuickSort(T[] elements, int leftIndex, int rightIndex) {
             int i = leftIndex, j = rightIndex;
+            // It's the base element - we try to sort all the items on the left and right parts
+            // of this item.
             var pivot = elements[(leftIndex + rightIndex)/2];
 
             while (i <= j) {

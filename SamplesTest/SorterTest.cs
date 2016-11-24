@@ -95,6 +95,21 @@ namespace SamplesTest {
             Assert.IsTrue(array1SortedAsc.SameArray(sorter.GetSorted()));
         }
 
+        [TestCategory("Sorting.Shell")]
+        [TestMethod]
+        public void TestShellSorting2()
+        {
+            var sorter = new ShellSorter<int>(InitArray2);
+            Assert.IsTrue(array2SortedAsc.SameArray(sorter.GetSorted()));
+        }
+        [TestCategory("Sorting.Shell")]
+        [TestMethod]
+        public void TestShellSorting3()
+        {
+            var sorter = new ShellSorter<int>(InitArray3);
+            Assert.IsTrue(array3SortedAsc.SameArray(sorter.GetSorted()));
+        }
+
         [TestCategory("Sorting.Smooth")]
         [TestMethod]
         public void TestSmoothSorting1()
@@ -103,5 +118,31 @@ namespace SamplesTest {
             Assert.IsTrue(array1SortedAsc.SameArray(sorter.GetSorted()));
         }
 
+        [TestCategory("Sorting.All")]
+        [TestMethod]
+        public void TestAllSorting() {
+            var data = getRandomArray();
+            var bobbleSorter = new BobbleSorter<int>(data);
+            var bobbleSortedResult = bobbleSorter.GetSorted();
+
+            var quickSorter = new QuickSorter<int>(data);
+            var quiskSorterResult = quickSorter.GetSorted();
+
+            var shellSorter = new ShellSorter<int>(data);
+            var shellSorterResult = shellSorter.GetSorted();
+
+            Assert.IsTrue(bobbleSortedResult.SameArray(quiskSorterResult));
+            Assert.IsTrue(quiskSorterResult.SameArray(shellSorterResult));
+        }
+
+        private int[] getRandomArray() {
+            var rnd = new Random();
+            var size = rnd.Next(2, 10);
+            var ret = new int[size];
+            for (int idx = 0; idx < size; idx++) {
+                ret[idx] = rnd.Next(int.MaxValue);
+            }
+            return ret;
+        }
     }
 }
