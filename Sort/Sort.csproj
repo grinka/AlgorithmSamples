@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bobble\BobbleSorter.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Common\ISorter.cs" />
     <Compile Include="Common\SorterBase.cs" />
     <Compile Include="Heap\HeapSorter.cs" />
