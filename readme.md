@@ -87,6 +87,11 @@ Range size == 8, so pivot position is: 8/2 = 4. We take the value in the positio
 
 `leftIndex == 0`, `rightIndex == 7`
 
+<table>
+<tr><th>L</th><th></th><th>v</th><th></th><th>pivot</th><th></th><th>v</th><th>R</th></tr>
+<tr><td>2</td><td>1</td><td><strong>5</strong></td><td>3</td><td>4</td><td>1</td><td><strong>2</strong></td><td>12</td></tr>
+</table>
+
 | L | | v | |  pivot |   | v | R |
 |-|-|
 | 2 | 1 | **5** | 3 | 4 | 1 |  **2** | 12 |
@@ -95,6 +100,11 @@ Range size == 8, so pivot position is: 8/2 = 4. We take the value in the positio
 `leftIndex == 2`, `rightIndex == 6`
 
 Swap the values
+
+<table>
+<tr><th>L</th><th></th><th>v</th><th></th><th>pivot</th><th></th><th>v</th><th>R</th></tr>
+<tr><td>2</td><td>1</td><td><strong>2</strong></td><td>3</td><td>4</td><td>1</td><td><strong>5</strong></td><td>12</td></tr>
+</table>
 
 | L | | v|  | pivot | | v | R|
 |-|-|
@@ -106,6 +116,11 @@ Move the indexes
 
 Continue searching.
 
+<table>
+<tr><th>L</th><th></th><th></th><th></th><th>pivot</th><th>v</th><th></th><th>R</th></tr>
+<tr><td>2</td><td>1</td><td>2</td><td>3</td><td>4</td><td><strong>1</strong></td><td>5</td><td>12</td></tr>
+</table>
+
 | L | | |  | pivot | v |  | R|
 |-|-|
 | 2 | 1 | 2 | 3 | 4 | **1** | 5 |  12 |
@@ -116,11 +131,21 @@ Continue searching.
 So `leftIndex == 4` , `rightIndex == 5`.
 Swap them and continue
 
+<table>
+<tr><th>L</th><th></th><th></th><th></th><th></th><th></th><th></th><th>R</th></tr>
+<tr><td>2</td><td>1</td><td>2</td><td>3</td><td><strong>1</strong></td><td><strong>4</strong></td><td>5</td><td>12</td></tr>
+</table>
+
 | L | | |  |  |  |  | R|
 |-|-|
 | 2 | 1 | 2 | 3 | **1** | **4** | 5 |  12 |
 
 `leftIndex == 5`, `rightIndex == 4`. Indexes met, so we stopped current step and continue sorting the sub-ranges.
+
+<table>
+<tr><th>L1</th><th></th><th>pivot</th><th></th><th>R1</th><th>L2</th><th>pivot2</th><th>R2</th></tr>
+<tr><td>2</td><td>1</td><td><strong>2</strong></td><td>3</td><td>1</td><td>4</td><td>5</td><td>12</td></tr>
+</table>
 
 | L1 | | pivot1 |  | R1 | L2 | pivot2 | R2 |
 |-|-|
@@ -128,17 +153,31 @@ Swap them and continue
 
 the right part of the range is already sorted, but second needs some swaps.
 
+<table>
+<tr><th>v</th><th></th><th></th><th></th><th>v</th></tr>
+<tr><td><strong>2</strong></td><td>1</td><td><strong>2</strong></td><td>3</td><td><strong>1</strong></td></tr>
+</table>
 
 | v | |  |  | v | 
 |-|-|
 | **2** | 1 | **2** | 3 | **1**
 
 
+<table>
+<tr><th></th><th>v</th><th></th><th>v</th><th></th></tr>
+<tr><td><strong>1</strong></td><td>1</td><td><strong>2</strong></td><td>3</td><td><strong>2</strong></td></tr>
+</table>
+
 |  | v |  | v |  | 
 |-|-|
 | **1** | 1 | **2** | 3 | **2**
 
 and then both indexes meet the pivot
+
+<table>
+<tr><th></th><th>vv</th><th></th><th></th><th></th></tr>
+<tr><td>1</td><td>1</td><td><strong>2</strong></td><td>3</td><td>2</td></tr>
+</table>
 
 |  |  | vv |  |  | 
 |-|-|
