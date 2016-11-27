@@ -14,36 +14,37 @@ namespace Algorithm.Sort.Quick {
             return sorted;
         }
 
-        private void QuickSort(T[] elements, int leftIndex, int rightIndex) {
-            int i = leftIndex, j = rightIndex;
+        private void QuickSort(T[] elements, int leftBorder, int rightBorder) {
+            int leftIndex = leftBorder, rightIndex = rightBorder;
             // It's the base element - we try to sort all the items on the left and right parts
             // of this item.
-            var pivot = elements[(leftIndex + rightIndex)/2];
+            var pivot = elements[(leftBorder + rightBorder)/2];
 
-            while (i <= j) {
-                while (elements[i].CompareTo(pivot) < 0) {
-                    i++;
+            while (leftIndex <= rightIndex) {
+                while (elements[leftIndex].CompareTo(pivot) < 0) {
+                    leftIndex++;
                 }
 
-                while (elements[j].CompareTo(pivot) > 0) {
-                    j--;
+                while (elements[rightIndex].CompareTo(pivot) > 0) {
+                    rightIndex--;
                 }
 
-                if (i <= j) {
-                    Swap(elements, i, j);
-
-                    i++;
-                    j--;
+                if (leftIndex <= rightIndex) {
+                    if (leftIndex < rightIndex) {
+                        Swap(elements, leftIndex, rightIndex);
+                    }
+                    leftIndex++;
+                    rightIndex--;
                 }
             }
 
             // Recursive calls
-            if (leftIndex < j) {
-                QuickSort(elements, leftIndex, j);
+            if (leftBorder < rightIndex) {
+                QuickSort(elements, leftBorder, rightIndex);
             }
 
-            if (i < rightIndex) {
-                QuickSort(elements, i, rightIndex);
+            if (leftIndex < rightBorder) {
+                QuickSort(elements, leftIndex, rightBorder);
             }
         }
     }
