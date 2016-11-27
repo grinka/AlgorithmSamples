@@ -57,14 +57,14 @@ namespace Algorithm.Sort.Common {
         }
 
         /// <summary>
-        /// Returns the value indicating if the item in the container with index <see cref="idx1"/>
+        /// Returns the value indicating whatever the item in the container with index <see cref="idx1"/>
         /// is bigger than item in the container with index <see cref="idx2"/>
         /// </summary>
         /// <param name="idx1">Index of the element to be compared.</param>
         /// <param name="idx2">Index of the element to be compared with.</param>
         /// <returns>true if element with first index is bigger than the element with second 
         /// index.</returns>
-        protected bool IsBibber(int idx1, int idx2) {
+        protected bool IsBigger(int idx1, int idx2) {
             return Container[idx1].CompareTo(Container[idx2]) > 0;
         }
 
@@ -76,7 +76,7 @@ namespace Algorithm.Sort.Common {
         /// <param name="idx2">Index of the element to be compared with.</param>
         /// <returns>true if element with first index is bigger than or equal to the element with 
         /// second index.</returns>
-        protected bool IsBibberOrEqual(int idx1, int idx2) {
+        protected bool IsBiggerOrEqual(int idx1, int idx2) {
             return Container[idx1].CompareTo(Container[idx2]) >= 0;
         }
 
