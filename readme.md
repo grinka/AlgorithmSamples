@@ -76,6 +76,11 @@ to the right border should be quick sorted.
 So for example we have the range. 
 Range size == 8, so pivot position is: 8/2 = 4. We take the value in the position 4.
 
+<table>
+<tr><th>L</th><th></th><th></th><th></th><th>pivot</th><th></th><th></th><th>R</th></tr>
+<tr><td>2</td><td>1</td><td>5</td><td>3</td><td>4</td><td>1</td><td>2</td><td>12</td></tr>
+</table>
+
 | L | | |  | pivot | |    | R |
 |-|-|
 | 2 | 1 | 5 | 3 | 4 | 1 |  2 | 12 |
