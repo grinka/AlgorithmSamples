@@ -163,38 +163,29 @@ the first element of the range is the bigest (smallest) one, we need just to sor
 order to have the full sorted range. So we find the bigest (or smallest) element in the range, swap it with the 
 first element of the range and repeat same operation with the sub-range, starting from second element.
 
+#### Insertion
+
+While the main index goes through array, every time when we find the element on wrong position - just insert it into
+right one.
+
+On every step we have all the passed elements (left from the current index) already sorted. If current element is
+smaller than the previous (if we sort ascendingly) we should check all the items left to find the right place (where
+the previous element is smaller and next element is equal or bigger than the current element). After that we just shift
+all the next elements to one position right and put the current element to the place we've found.
+
+After each step the left part of the array stays sorted.
+
+The Shell algorithm is the example of the insertion algorithm with diminishing increment. This allows to perform "long"
+shifts on first steps so we don't need to move dozens of items in such cases.
+
+#### Merge
+
+Uses the idea that when we merge two sorted arrays, we need just to compare the top values of the arrays, get
+the biggest one and then remove it from array. Repeat this merging until there are no more items left. So we just need
+to split the original array on two parts repeatly until only one-item arrays are left. The array containing one item is
+trivially sorted. After that we merge the array pairs back two by two and then have the whole array sorted.
 
 #### Smooth
 
-3 2 1
-  2
-main = 1
+Not implemented yet.
 
-temp = 2
-i = 1
-a(i) = 2
-a(i-1) = 3
-a(i) = 3
-
-i = 0
-a(i) = temp
-
-2 3 1
-main = 2
-temp = 1
-1 < 3
-
-i = 2
-a(i) = 1
-a(i-1) = 3
-=> a(i) = a(i-1)
-2 3 3
-
-i = 1
-a(i) = 3
-a(i-1) = 2
-2 > 1 => a(i) = a(i-1)
-2 2 3
-
-i = 0
-a(i) = temp
