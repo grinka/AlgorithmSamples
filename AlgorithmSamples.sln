@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		readme.md = readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingTestConsole", "SortingTestConsole\SortingTestConsole.csproj", "{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{1AA2010F-DB6F-4BC1-BE36-5E2F0126D7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AA2010F-DB6F-4BC1-BE36-5E2F0126D7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AA2010F-DB6F-4BC1-BE36-5E2F0126D7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,5 +72,6 @@ Global
 		{95155C5F-2F23-4C8B-9399-A22068FF7714} = {D6EBF60A-A1E1-44E5-BEC1-0AF9CFD17DC5}
 		{A44F5E5C-69D1-4DE5-91EA-D556636674B3} = {D6EBF60A-A1E1-44E5-BEC1-0AF9CFD17DC5}
 		{1AA2010F-DB6F-4BC1-BE36-5E2F0126D7AB} = {7C2EA9B0-715F-4CB9-948E-22D0F0B3853E}
+		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547} = {7C2EA9B0-715F-4CB9-948E-22D0F0B3853E}
 	EndGlobalSection
 EndGlobal

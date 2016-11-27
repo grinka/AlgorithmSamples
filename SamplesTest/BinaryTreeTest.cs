@@ -43,8 +43,8 @@ namespace SamplesTest {
             Assert.AreEqual(":two:four:One:six:five:eight:three:seven", strValue);
         }
 
-        private static NonComparableTree<string> BuildTreeOneTwoThreeSecondary() {
-            var tree = new NonComparableTree<string>(x => x.Substring(1));
+        private static NonComparableBinaryTree<string> BuildTreeOneTwoThreeSecondary() {
+            var tree = new NonComparableBinaryTree<string>(x => x.Substring(1));
             FillTreeWithValues(tree);
             return tree;
         }
