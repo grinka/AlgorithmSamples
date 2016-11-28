@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlrogithmSamples.BinnaryTreeBalanced
+namespace AlrogithmSamples.BinaryTreeBalanced
 {
     public class Tree<T>
     {

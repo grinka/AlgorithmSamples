@@ -1,7 +1,7 @@
 ﻿using System;
 using AlgorithmSamples.BinaryTreeCommon;
 
-namespace AlrogithmSamples.BinnaryTreeBalanced
+namespace AlrogithmSamples.BinaryTreeBalanced
 {
     public class Node< T > : SortableBinaryTreeNode< T >, INode< T >
     {

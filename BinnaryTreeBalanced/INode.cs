@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace AlrogithmSamples.BinnaryTreeBalanced
+﻿namespace AlrogithmSamples.BinaryTreeBalanced
 {
     public interface INode< T >
     {
