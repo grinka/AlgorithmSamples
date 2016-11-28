@@ -36,6 +36,12 @@ Should contain the implementation of the binary tree with automatic balancing -
 the longest path of the left and right descendants of each the node should not differ on
 more than 1.
 
+##### Red-black tree
+
+- http://www.codenet.ru/np-includes/upload/2004/04/05/127988.txt
+- Lecture: http://videolectures.net/mit6046jf05_demaine_lec10/
+
+
 ### Sorting
 
 Standard sorting algorithms, working with an array as a source. Source values should be presented as
