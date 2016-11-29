@@ -2,12 +2,12 @@
 using System.Data.SqlTypes;
 
 namespace AlrogithmSamples.BinaryTreeBalanced {
-    public class RedBlackNode<T> where T:INullable {
+    public class RedBlackNode<T> {
         public RedBlackNode<T> Left { get; set; }
         public RedBlackNode<T> Right { get; set; }
         public RedBlackNode<T> Parent { get; set; }
         public NodeColor Color { get; set; }
-        public T Value { get; }
+        public T Value { get; set; }
         public int Count { get; set; }
         public IComparable ItemKey { get; set; }
 

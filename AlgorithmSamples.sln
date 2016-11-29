@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingTestConsole", "SortingTestConsole\SortingTestConsole.csproj", "{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeConsole", "BinaryTreeConsole\BinaryTreeConsole.csproj", "{B736941D-867C-4D41-9DD8-03AEE5C4FB5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B736941D-867C-4D41-9DD8-03AEE5C4FB5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B736941D-867C-4D41-9DD8-03AEE5C4FB5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B736941D-867C-4D41-9DD8-03AEE5C4FB5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B736941D-867C-4D41-9DD8-03AEE5C4FB5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,5 +79,6 @@ Global
 		{A44F5E5C-69D1-4DE5-91EA-D556636674B3} = {D6EBF60A-A1E1-44E5-BEC1-0AF9CFD17DC5}
 		{1AA2010F-DB6F-4BC1-BE36-5E2F0126D7AB} = {7C2EA9B0-715F-4CB9-948E-22D0F0B3853E}
 		{B9A748D9-4FA7-4EC2-BDD1-380EC2641547} = {7C2EA9B0-715F-4CB9-948E-22D0F0B3853E}
+		{B736941D-867C-4D41-9DD8-03AEE5C4FB5D} = {D6EBF60A-A1E1-44E5-BEC1-0AF9CFD17DC5}
 	EndGlobalSection
 EndGlobal
