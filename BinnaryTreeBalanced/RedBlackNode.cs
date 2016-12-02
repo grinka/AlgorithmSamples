@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlTypes;
 
 namespace AlrogithmSamples.BinaryTreeBalanced {
     public class RedBlackNode<T> {
@@ -26,6 +25,22 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
 
         public RedBlackNode(T data, IComparable key, RedBlackNode<T> parent) : this(data, key) {
             Parent = parent;
+        }
+
+        public bool IsLeftNode() {
+            if (Parent == null) {
+                throw new NullReferenceException("The current node does not have parent node!");
+            }
+            return this == Parent.Left;
+        }
+
+
+        public bool IsRightNode() {
+            if (Parent == null)
+            {
+                throw new NullReferenceException("The current node does not have parent node!");
+            }
+            return this == Parent.Right;
         }
     }
 }

@@ -1,29 +1,46 @@
 ﻿using System;
-using System.Data.SqlTypes;
 
 namespace AlrogithmSamples.BinaryTreeBalanced {
 
+    #region Public Enums
+    /// <summary>
+    /// Represents the node color - red or black.
+    /// </summary>
     public enum NodeColor {
         Red,
         Black
     }
 
-    public enum DeleteStatus {
+    /// <summary>
+    /// Represents the node operation result status.
+    /// </summary>
+    public enum NodeOperationStatus {
         Ok = 0,
-        NotFound = 1
+        NotFound = 1,
+        DuplicateKey = 2
     }
-
-    public enum InsertNodeStatus {
-        Ok = 0,
-        DuplicateKey = 1
-    }
+    #endregion
 
 
     public class RedBlackTree<T, TKey> where TKey: IComparable {
+        #region Local fields
+        /// <summary>
+        /// Root node of the tree.
+        /// </summary>
         private RedBlackNode<T> Root { get; set; }
-        private readonly RedBlackNode<T> Nil;
-        private readonly Func<T, TKey> _compareFunc;
 
+        /// <summary>
+        /// The sentinel nill node, used to identify empty leafs and empty root node.
+        /// </summary>
+        private readonly RedBlackNode<T> Nil;
+
+        /// <summary>
+        /// Function which allows to get the key value based on the data value.
+        /// </summary>
+        private readonly Func<T, TKey> _compareFunc;
+        #endregion
+
+        #region Constructors
         public RedBlackTree(Func<T, TKey> compareFunc) {
             _compareFunc = compareFunc;
             Nil = new RedBlackNode<T>();
@@ -35,71 +52,98 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
 
             Root = Nil;
         }
+        #endregion
 
-        public void RotateLeft(RedBlackNode<T> x) {
-            var y = x.Right;
-            x.Right = y.Left;
-            if (y.Left != Nil) {
-                y.Left.Parent = x;
-            }
+        #region Utility Methods
 
-            /* Establish y.Parent link */
-            if (y != Nil) {
-                y.Parent = x.Parent;
-            }
-
-            if (x.Parent != null) {
-                if (x == x.Parent.Left) {
-                    x.Parent.Left = y;
-                } else {
-                    x.Parent.Right = y;
-                }
-            } else {
-                Root = y;
-            }
-
-            /* link x and y */
-            y.Left = x;
-            if (x != Nil) {
-                x.Parent = y;
-            }
-        }
-
-        public void RotateRight(RedBlackNode<T> x) {
-            var y = x.Left;
-            /* establish x.left link */
-            if (y.Right != Nil) {
-                y.Right.Parent = x;
-            }
-
-            /* establish y.parent link */
-            if (y != Nil) {
-                y.Parent = x.Parent;
-            }
-
-            if (x.Parent != null) {
-                if (x == x.Parent.Right) {
-                    x.Parent.Right = y;
-                } else {
-                    x.Parent.Left = y;
-                }
-            } else {
-                Root = y;
-            }
-
-            /* link x and y */
-            y.Right = x;
-            if (x != Nil) {
-                x.Parent = y;
-            }
-        }
-
-        private static bool CompareEq(IComparable key1, IComparable key2) {
+        #region Keys manipulation
+        /// <summary>
+        /// Compares two keys if they are equal.
+        /// </summary>
+        /// <param name="key1"></param>
+        /// <param name="key2"></param>
+        /// <returns>True if keys are equal.</returns>
+        private static bool CompareEq(IComparable key1, IComparable key2)
+        {
             return key1.CompareTo(key2) == 0;
         }
 
-        private static bool CompareLt(IComparable key1, IComparable key2) {
+        /// <summary>
+        /// Compares two keys if the first key is less than second one.
+        /// </summary>
+        /// <param name="key1"></param>
+        /// <param name="key2"></param>
+        /// <returns>True if the first key is smaller than second one.</returns>
+        private static bool CompareLt(IComparable key1, IComparable key2)
+        {
             return key1.CompareTo(key2) < 0;
+        }
+        #endregion
+
+        #region Nodes manipulation
+        /// <summary>
+        /// Rotate the node subtree to the left.
+        /// </summary>
+        /// <param name="node">Parent node of the subtree.</param>
+        public void RotateLeft(RedBlackNode<T> node) {
+            var rightChild = node.Right;
+            node.Right = rightChild.Left;
+            if (rightChild.Left != Nil) {
+                rightChild.Left.Parent = node;
+            }
+
+            /* Establish child.Parent link */
+            if (rightChild != Nil) {
+                rightChild.Parent = node.Parent;
+            }
+
+            if (node.Parent != null) {
+                if (node.IsLeftNode()) {
+                    node.Parent.Left = rightChild;
+                } else {
+                    node.Parent.Right = rightChild;
+                }
+            } else {
+                Root = rightChild;
+            }
+
+            /* link node and child node */
+            rightChild.Left = node;
+            if (node != Nil) {
+                node.Parent = rightChild;
+            }
+        }
+
+        /// <summary>
+        /// Rotate the node subtree to the right.
+        /// </summary>
+        /// <param name="node">The parent node of the subtree.</param>
+        public void RotateRight(RedBlackNode<T> node) {
+            var leftChild = node.Left;
+            if (leftChild.Right != Nil) {
+                leftChild.Right.Parent = node;
+            }
+
+            /* establish child.parent link */
+            if (leftChild != Nil) {
+                leftChild.Parent = node.Parent;
+            }
+
+            if (node.Parent != null) {
+                if (node.IsRightNode()) {
+                    node.Parent.Right = leftChild;
+                } else {
+                    node.Parent.Left = leftChild;
+                }
+            } else {
+                Root = leftChild;
+            }
+
+            /* link node and child node */
+            leftChild.Right = node;
+            if (node != Nil) {
+                node.Parent = leftChild;
+            }
         }
 
         /// <summary>
@@ -161,10 +205,129 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
         }
 
         /// <summary>
+        /// Maintain red-blue balance after deleting the node.
+        /// </summary>
+        /// <param name="x"></param>
+        public void DeleteFixup(RedBlackNode<T> x)
+        {
+            /*
+             * maintain red-blackk tree after deleting a note
+             */
+            while (x != Root && x.Color == NodeColor.Black)
+            {
+                if (x == x.Parent.Left)
+                {
+                    var w = x.Parent.Right;
+                    if (w.Color == NodeColor.Red)
+                    {
+                        w.Color = NodeColor.Black;
+                        x.Parent.Color = NodeColor.Red;
+                        RotateLeft(x.Parent);
+                        w = x.Parent.Right;
+                    }
+
+                    if (w.Left.Color == NodeColor.Black && w.Right.Color == NodeColor.Black)
+                    {
+                        w.Color = NodeColor.Red;
+                        x = x.Parent;
+                    }
+                    else
+                    {
+                        if (x.Right.Color == NodeColor.Black)
+                        {
+                            w.Left.Color = NodeColor.Black;
+                            w.Color = NodeColor.Red;
+                            RotateRight(w);
+                            w = x.Parent.Right;
+                        }
+
+                        w.Color = x.Parent.Color;
+                        x.Parent.Color = NodeColor.Black;
+                        w.Right.Color = NodeColor.Black;
+                        RotateLeft(x.Parent);
+                        x = Root;
+                    }
+                }
+                else
+                {
+                    var w = x.Parent.Left;
+                    if (w.Color == NodeColor.Red)
+                    {
+                        x.Color = NodeColor.Black;
+                        x.Parent.Color = NodeColor.Red;
+                        RotateRight(x.Parent);
+                        w = x.Parent.Left;
+                    }
+
+                    if (w.Right.Color == NodeColor.Black && w.Left.Color == NodeColor.Black)
+                    {
+                        w.Color = NodeColor.Red;
+                        x = x.Parent;
+                    }
+                    else
+                    {
+                        if (w.Left.Color == NodeColor.Black)
+                        {
+                            w.Right.Color = NodeColor.Black;
+                            w.Color = NodeColor.Red;
+                            RotateLeft(w);
+                            w = x.Parent.Left;
+                        }
+
+                        w.Color = x.Parent.Color;
+                        x.Parent.Color = NodeColor.Black;
+                        w.Left.Color = NodeColor.Black;
+                        RotateRight(x.Parent);
+                        x = Root;
+                    }
+                }
+            }
+
+            x.Color = NodeColor.Black;
+        }
+        #endregion
+
+        #region Display Tree Nodes
+        /// <summary>
+        /// Concatenate the node string representation to the tree string representation.
+        /// Recursively called for all descendant nodes.
+        /// </summary>
+        /// <param name="levels">Array of tree strings - one string for each level, starting from root.</param>
+        /// <param name="currentLevel">Level of the current node.</param>
+        /// <param name="node">The node object.</param>
+        private void AddNodeViewToLevel(string[] levels, int currentLevel, RedBlackNode<T> node)
+        {
+            var strLevel = levels[currentLevel] ?? $"{currentLevel} > ";
+            strLevel += NodeView(node);
+
+            levels[currentLevel] = strLevel;
+            if (node != Nil)
+            {
+                AddNodeViewToLevel(levels, currentLevel + 1, node.Left);
+                AddNodeViewToLevel(levels, currentLevel + 1, node.Right);
+            }
+        }
+
+        /// <summary>
+        /// Returns the string representation of the one node.
+        /// </summary>
+        /// <param name="node">Node object to be displayed.</param>
+        /// <returns>String representing the node data. Displays the node value or "Nill" for the nill nodes in
+        /// parentles for black and double parentless for red nodes.</returns>
+        private string NodeView(RedBlackNode<T> node)
+        {
+            var strData = node == Nil ? "Nil" : node.Value.ToString();
+            return node.Color == NodeColor.Black ? $" ({strData}) " : $" (({strData})) ";
+        }
+        #endregion
+        #endregion
+
+        #region Public Methods - Tree Manipulation
+        /// <summary>
         /// Insert the node into tree.
         /// </summary>
         /// <param name="value"></param>
-        public InsertNodeStatus Insert(T value) {
+        public NodeOperationStatus Insert(T value) {
             var current = Root;
             var keyValue = _compareFunc(value);
             RedBlackNode<T> parent = null;
@@ -172,7 +335,7 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
             /* find the parent */
             while (current != Nil) {
                 if (CompareEq(keyValue, current.ItemKey)) {
-                    return InsertNodeStatus.DuplicateKey;
+                    return NodeOperationStatus.DuplicateKey;
                 }
                 parent = current;
                 current = CompareLt(keyValue, current.ItemKey) ? current.Left : current.Right;
@@ -197,73 +360,15 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
             }
 
             InsertFixup(x);
-            return InsertNodeStatus.Ok;
+            return NodeOperationStatus.Ok;
         }
 
-        public void DeleteFixup(RedBlackNode<T> x) {
-            /*
-             * maintain red-blackk tree after deleting a note
-             */
-            while (x != Root && x.Color == NodeColor.Black) {
-                if (x == x.Parent.Left) {
-                    var w = x.Parent.Right;
-                    if (w.Color == NodeColor.Red) {
-                        w.Color = NodeColor.Black;
-                        x.Parent.Color = NodeColor.Red;
-                        RotateLeft(x.Parent);
-                        w = x.Parent.Right;
-                    }
-
-                    if (w.Left.Color == NodeColor.Black && w.Right.Color == NodeColor.Black) {
-                        w.Color = NodeColor.Red;
-                        x = x.Parent;
-                    } else {
-                        if (x.Right.Color == NodeColor.Black) {
-                            w.Left.Color = NodeColor.Black;
-                            w.Color = NodeColor.Red;
-                            RotateRight(w);
-                            w = x.Parent.Right;
-                        }
-
-                        w.Color = x.Parent.Color;
-                        x.Parent.Color = NodeColor.Black;
-                        w.Right.Color = NodeColor.Black;
-                        RotateLeft(x.Parent);
-                        x = Root;
-                    }
-                } else {
-                    var w = x.Parent.Left;
-                    if (w.Color == NodeColor.Red) {
-                        x.Color = NodeColor.Black;
-                        x.Parent.Color = NodeColor.Red;
-                        RotateRight(x.Parent);
-                        w = x.Parent.Left;
-                    }
-
-                    if (w.Right.Color == NodeColor.Black && w.Left.Color == NodeColor.Black) {
-                        w.Color = NodeColor.Red;
-                        x = x.Parent;
-                    } else {
-                        if (w.Left.Color == NodeColor.Black) {
-                            w.Right.Color = NodeColor.Black;
-                            w.Color = NodeColor.Red;
-                            RotateLeft(w);
-                            w = x.Parent.Left;
-                        }
-
-                        w.Color = x.Parent.Color;
-                        x.Parent.Color = NodeColor.Black;
-                        w.Left.Color = NodeColor.Black;
-                        RotateRight(x.Parent);
-                        x = Root;
-                    }
-                }
-            }
-
-            x.Color = NodeColor.Black;
-        }
-
-        public DeleteStatus Delete(TKey key) {
+        /// <summary>
+        /// Delete the node from the tree found by the key.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public NodeOperationStatus Delete(TKey key) {
             RedBlackNode<T> x, y;
             
             /* delete node z from the tree */
@@ -277,7 +382,7 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
             }
 
             if (z == Nil) {
-                return DeleteStatus.NotFound;
+                return NodeOperationStatus.NotFound;
             }
 
             if (z.Left == Nil || z.Right == Nil) {
@@ -319,9 +424,14 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
                 DeleteFixup(x);
             }
 
-            return DeleteStatus.Ok;
+            return NodeOperationStatus.Ok;
         }
 
+        /// <summary>
+        /// Find the node in the tree by the key.
+        /// </summary>
+        /// <param name="key">The data key.</param>
+        /// <returns>The node with given key. Null if node is not found.</returns>
         public RedBlackNode<T> Find(TKey key) {
             var current = Root;
             while (current != Nil) {
@@ -332,6 +442,7 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
             }
             return null;
         }
+        #endregion
 
         public void DisplayTree() {
             var allLevels = new string[20];
@@ -341,22 +452,6 @@ namespace AlrogithmSamples.BinaryTreeBalanced {
                     Console.WriteLine(strLevel);
                 }
             }
-        }
-
-        private void AddNodeViewToLevel(string[] levels, int currentLevel, RedBlackNode<T> node) {
-            var strLevel = levels[currentLevel] ?? $"{currentLevel} > ";
-            strLevel += NodeView(node);
-
-            levels[currentLevel] = strLevel;
-            if (node != Nil) {
-                AddNodeViewToLevel(levels, currentLevel+1, node.Left);
-                AddNodeViewToLevel(levels, currentLevel+1, node.Right);
-            }
-        }
-
-        private string NodeView(RedBlackNode<T> node) {
-            var strData = node == Nil ? "Nil" : node.Value.ToString();
-            return node.Color == NodeColor.Black ? $" ({strData}) " : $" (({strData})) ";
         }
     }
 }
