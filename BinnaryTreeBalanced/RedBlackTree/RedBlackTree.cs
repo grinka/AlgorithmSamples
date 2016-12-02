@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlrogithmSamples.BinaryTreeBalanced {
+namespace AlrogithmSamples.BinaryTreeBalanced.RedBlackTree {
 
     #region Public Enums
     /// <summary>

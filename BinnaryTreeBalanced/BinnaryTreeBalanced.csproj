@@ -43,8 +43,8 @@
     <Compile Include="INode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedBlackNode.cs" />
-    <Compile Include="RedBlackTree.cs" />
+    <Compile Include="RedBlackTree\RedBlackNode.cs" />
+    <Compile Include="RedBlackTree\RedBlackTree.cs" />
     <Compile Include="Tree.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +52,9 @@
       <Project>{A44F5E5C-69D1-4DE5-91EA-D556636674B3}</Project>
       <Name>BinaryTreeCommon</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AVLTree\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
