@@ -7,7 +7,7 @@
     <ProjectGuid>{95155C5F-2F23-4C8B-9399-A22068FF7714}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AlrogithmSamples.BinaryTreeBalanced</RootNamespace>
+    <RootNamespace>AlgorithmSamples.BinaryTreeBalanced</RootNamespace>
     <AssemblyName>BinaryTreeBalanced</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AVLTree\AutoBalancedAvlTree.cs" />
+    <Compile Include="AVLTree\AvlTree.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,9 +55,7 @@
       <Name>BinaryTreeCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AVLTree\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

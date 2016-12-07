@@ -1,5 +1,4 @@
-﻿using AlrogithmSamples.BinaryTreeBalanced;
-using AlrogithmSamples.BinaryTreeBalanced.RedBlackTree;
+﻿using AlgorithmSamples.BinaryTreeBalanced.RedBlackTree;
 
 namespace BinaryTreeConsole
 {

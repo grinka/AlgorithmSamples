@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BinnaryTreeBalanced\BinnaryTreeBalanced.csproj">
+    <ProjectReference Include="..\BinnaryTreeBalanced\BinaryTreeBalanced.csproj">
       <Project>{95155c5f-2f23-4c8b-9399-a22068ff7714}</Project>
-      <Name>BinnaryTreeBalanced</Name>
+      <Name>BinaryTreeBalanced</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

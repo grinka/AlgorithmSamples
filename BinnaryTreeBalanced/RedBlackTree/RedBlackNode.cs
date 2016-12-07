@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlrogithmSamples.BinaryTreeBalanced.RedBlackTree {
+namespace AlgorithmSamples.BinaryTreeBalanced.RedBlackTree {
     public class RedBlackNode<T> {
         public RedBlackNode<T> Left { get; set; }
         public RedBlackNode<T> Right { get; set; }
