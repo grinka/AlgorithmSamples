@@ -323,6 +323,13 @@ namespace AlgorithmSamples.BinaryTreeBalanced.RedBlackTree {
         #endregion
 
         #region Public Methods - Tree Manipulation
+
+        public void Insert(T[] values) {
+            foreach (var value in values) {
+                Insert(value);
+            }
+        }
+
         /// <summary>
         /// Insert the node into tree.
         /// </summary>

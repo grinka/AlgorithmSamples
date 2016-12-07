@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeSort", "BinaryTre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplesTest", "SamplesTest\SamplesTest.csproj", "{54E05A08-E2E4-4191-8E79-7DFE17F11BBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinnaryTreeBalanced", "BinnaryTreeBalanced\BinnaryTreeBalanced.csproj", "{95155C5F-2F23-4C8B-9399-A22068FF7714}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeBalanced", "BinnaryTreeBalanced\BinaryTreeBalanced.csproj", "{95155C5F-2F23-4C8B-9399-A22068FF7714}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeCommon", "BinaryTreeCommon\BinaryTreeCommon.csproj", "{A44F5E5C-69D1-4DE5-91EA-D556636674B3}"
 EndProject

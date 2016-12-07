@@ -1,10 +1,27 @@
 ﻿using System.Linq;
+using AlgorithmSamples.BinaryTreeBalanced.AVLTree;
+using AlgorithmSamples.BinaryTreeBalanced.RedBlackTree;
 using AlgorithmSamples.BinaryTreeSort;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SamplesTest {
     [TestClass]
     public class BinaryTreeTest {
+        private string[] StringTreeInit = {
+            "One",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+            "ten"
+        };
+
+        private string SortedTreeResult = ":eight:five:four:nine:One:seven:six:ten:three:two";
+
         [TestMethod]
         [TestCategory("BinaryTree")]
         public void TestBinaryTreeMethodAsc1() {
@@ -64,6 +81,27 @@ namespace SamplesTest {
             tree.AddValue("six");
             tree.AddValue("seven");
             tree.AddValue("eight");
+        }
+
+        [TestMethod]
+        [TestCategory("BinaryTree.AvlTree")]
+        public void AvlTreeTest1() {
+            var tree = new AvlTree<string, string>((s) => s);
+            tree.Insert(StringTreeInit);
+
+            var result = tree.Aggregate(
+                string.Empty,
+                (accumulator, addValue) => $"{accumulator}:{addValue}");
+
+            Assert.AreEqual(SortedTreeResult, result);
+        }
+
+        [TestMethod]
+        [TestCategory("BinaryTree")]
+        [TestCategory("RedBlackTree")]
+        public void RedBlackTreeTest1() {
+            var tree = new RedBlackTree<string, string>((s) => s);
+            tree.Insert(StringTreeInit);
         }
     }
 }
