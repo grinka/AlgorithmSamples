@@ -1,5 +1,5 @@
 ﻿using System;
-using AlgorithmSamples.BinaryTreeCommon;
+using AlgorithmSamples.BinaryTree.Common;
 
 namespace AlgorithmSamples.BinaryTreeSort {
     public class NonComparableNode<T> : SortableBinaryTreeNode<T> {

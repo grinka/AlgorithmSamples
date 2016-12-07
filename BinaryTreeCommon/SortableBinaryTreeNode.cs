@@ -1,6 +1,6 @@
-﻿namespace AlgorithmSamples.BinaryTreeCommon {
-    using System;
+﻿using System;
 
+namespace AlgorithmSamples.BinaryTree.Common {
     /// <summary>
     /// Implements the ISortableNode interface - allows to get the sorted list of descendants.
     /// </summary>

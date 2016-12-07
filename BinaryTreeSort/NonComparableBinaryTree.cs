@@ -1,4 +1,4 @@
-﻿using AlgorithmSamples.BinaryTreeCommon;
+﻿using AlgorithmSamples.BinaryTree.Common;
 
 namespace AlgorithmSamples.BinaryTreeSort {
     using System;

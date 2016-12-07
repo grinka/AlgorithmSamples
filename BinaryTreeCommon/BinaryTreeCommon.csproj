@@ -7,7 +7,7 @@
     <ProjectGuid>{A44F5E5C-69D1-4DE5-91EA-D556636674B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AlgorithmSamples.BinaryTreeCommon</RootNamespace>
+    <RootNamespace>AlgorithmSamples.BinaryTree.Common</RootNamespace>
     <AssemblyName>BinaryTreeCommon</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISortableNode.cs" />
+    <Compile Include="ISortableTree.cs" />
     <Compile Include="SortableBinaryTree.cs" />
     <Compile Include="SortableBinaryTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

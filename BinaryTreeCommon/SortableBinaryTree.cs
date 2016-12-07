@@ -1,4 +1,4 @@
-﻿namespace AlgorithmSamples.BinaryTreeCommon
+﻿namespace AlgorithmSamples.BinaryTree.Common
 {
     /// <summary>
     /// Binary tree allows sorting. Has a reference to the root child node, 

@@ -1,4 +1,4 @@
-﻿namespace AlgorithmSamples.BinaryTreeCommon {
+﻿namespace AlgorithmSamples.BinaryTree.Common {
     /// <summary>
     /// Node to be used with sorting binary tree.
     /// </summary>
