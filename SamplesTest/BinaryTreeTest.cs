@@ -26,9 +26,9 @@ namespace SamplesTest {
         [TestCategory("BinaryTree")]
         public void TestBinaryTreeMethodAsc1() {
             var tree = new BinaryTree<int>();
-            tree.AddValue(1);
-            tree.AddValue(12);
-            tree.AddValue(7);
+            tree.Insert(1);
+            tree.Insert(12);
+            tree.Insert(7);
             var ret = tree.SortedAscending;
             ret.Aggregate<int, string>(string.Empty, (item, s) => $"{s} {item}");
         }
@@ -73,14 +73,14 @@ namespace SamplesTest {
         }
 
         private static void FillTreeWithValues(NonComparableBinaryTree<string> tree) {
-            tree.AddValue("One");
-            tree.AddValue("two");
-            tree.AddValue("three");
-            tree.AddValue("four");
-            tree.AddValue("five");
-            tree.AddValue("six");
-            tree.AddValue("seven");
-            tree.AddValue("eight");
+            tree.Insert("One");
+            tree.Insert("two");
+            tree.Insert("three");
+            tree.Insert("four");
+            tree.Insert("five");
+            tree.Insert("six");
+            tree.Insert("seven");
+            tree.Insert("eight");
         }
 
         [TestMethod]

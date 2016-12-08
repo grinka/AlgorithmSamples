@@ -6,27 +6,27 @@
     /// Method to create the new node should be overwriten.
     /// </summary>
     /// <typeparam name="T">Type of the value to be stored in the tree nodes.</typeparam>
-    public abstract class SortableBinaryTree<T> {
+    public abstract class SortableBinaryTree<T> : ISortableTree<T> {
         /// <summary>
         /// The root tree node.
         /// </summary>
         protected ISortableNode<T> RootNode;
 
-        /// <summary>
-        /// Gets the content of the tree in ascending order.
-        /// </summary>
+        /// <inheritdoc cref="ISortableTree{T}.SortedAscending"/>
         public T[] SortedAscending => RootNode.SortedAscending;
-        /// <summary>
-        /// Gets the content of the tree in descending order.
-        /// </summary>
+
+        /// <inheritdoc cref="ISortableTree{T}.SortedDescending"/>
         public T[] SortedDescending => RootNode.SortedDescending;
 
-        /// <summary>
-        /// Add the new value to the tree. If tree does not have any nodes,
-        /// the root node with given value is created.
-        /// </summary>
-        /// <param name="value">The object to be added to the tree.</param>
-        public void AddValue(T value) {
+        /// <inheritdoc cref="ISortableTree{T}.Insert(T)"/>
+        public void Insert(T[] values) {
+            foreach (var value in values) {
+                Insert(value);
+            }
+        }
+
+        /// <inheritdoc cref="ISortableTree{T}.Insert(T)"/>
+        public void Insert(T value) {
             if (RootNode == null) {
                 RootNode = CreateRootNode(value);
             } else {

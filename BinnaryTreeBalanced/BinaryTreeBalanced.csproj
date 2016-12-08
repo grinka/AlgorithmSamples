@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AVLTree\AutoBalancedAvlTree.cs" />
     <Compile Include="AVLTree\AvlTree.cs" />
+    <Compile Include="AVLTree\MyAvlTree.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

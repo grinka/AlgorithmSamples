@@ -1,4 +1,5 @@
 ﻿using System;
+using AlgorithmSamples.BinaryTree.Common;
 
 namespace AlgorithmSamples.BinaryTreeBalanced.RedBlackTree {
 
@@ -22,7 +23,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.RedBlackTree {
     #endregion
 
 
-    public class RedBlackTree<T, TKey> where TKey: IComparable {
+    public class RedBlackTree<T, TKey> : ISortableTree<T> where TKey: IComparable {
         #region Local fields
         /// <summary>
         /// Root node of the tree.
@@ -330,11 +331,15 @@ namespace AlgorithmSamples.BinaryTreeBalanced.RedBlackTree {
             }
         }
 
+        public void Insert(T value) {
+            InsertValue(value);
+        }
+
         /// <summary>
         /// Insert the node into tree.
         /// </summary>
         /// <param name="value"></param>
-        public NodeOperationStatus Insert(T value) {
+        public NodeOperationStatus InsertValue(T value) {
             var current = Root;
             var keyValue = _compareFunc(value);
             RedBlackNode<T> parent = null;
@@ -449,6 +454,20 @@ namespace AlgorithmSamples.BinaryTreeBalanced.RedBlackTree {
             }
             return null;
         }
+        #endregion
+
+        #region Public Properties - Sorting
+
+        T[] ISortableTree<T>.SortedAscending
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        T[] ISortableTree<T>.SortedDescending
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         #endregion
 
         public void DisplayTree() {
