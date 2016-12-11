@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AlgorithmSamples.BinaryTreeBalanced.AVLTree;
 using AlgorithmSamples.BinaryTreeBalanced.RedBlackTree;
 using AlgorithmSamples.BinaryTreeSort;
@@ -8,7 +9,7 @@ namespace SamplesTest {
     [TestClass]
     public class BinaryTreeTest {
         private string[] StringTreeInit = {
-            "One",
+            "one",
             "two",
             "three",
             "four",
@@ -20,7 +21,20 @@ namespace SamplesTest {
             "ten"
         };
 
-        private string SortedTreeResult = ":eight:five:four:nine:One:seven:six:ten:three:two";
+        private string SortedTreeResult = ":eight:five:four:nine:one:seven:six:ten:three:two";
+
+        [TestMethod]
+        [TestCategory("BinaryTree")]
+        [TestCategory("MyAvlTree")]
+        public void TestMyAvlTree1() {
+            var tree = new MyAvlTree<string, string>(x => x);
+            tree.Insert(StringTreeInit);
+            var ret = tree.GetSortedAscending();
+            var strRet = ret.Aggregate<string, string>(
+                string.Empty,
+                (collector, item) => $"{collector}:{item}");
+            Assert.AreEqual(SortedTreeResult, strRet);
+        }
 
         [TestMethod]
         [TestCategory("BinaryTree")]
@@ -30,7 +44,8 @@ namespace SamplesTest {
             tree.Insert(12);
             tree.Insert(7);
             var ret = tree.SortedAscending;
-            ret.Aggregate<int, string>(string.Empty, (item, s) => $"{s} {item}");
+            var strRet = ret.Aggregate<int, string>(string.Empty, (s, item) => $"{s} {item}");
+            Assert.AreEqual("12 7 1 ", strRet);
         }
 
         [TestMethod]
@@ -86,7 +101,7 @@ namespace SamplesTest {
         [TestMethod]
         [TestCategory("BinaryTree.AvlTree")]
         public void AvlTreeTest1() {
-            var tree = new AvlTree<string, string>((s) => s);
+            var tree = new AvlTree<string, string>((s) => s.ToLowerInvariant());
             tree.Insert(StringTreeInit);
 
             var result = tree.Aggregate(

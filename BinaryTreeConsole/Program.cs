@@ -10,19 +10,57 @@ namespace BinaryTreeConsole {
             //TestTreeAdding();
             //TestTreeBalanceRight();
             //TestTreeBalanceLeft();
-            TestTreeLeftRight2();
+            MyAvlTreeStrings();
             //TestTreeBalanceRightLeft();
+        }
+
+        private static void DisplayDebugTree(MyAvlTree<string, string> tree) {
+            DisplayTree(tree.DisplayTreeAsIs());
+        }
+
+        private static void MyAvlTreeStrings() {
+            var tree = new MyAvlTree<string, string>(x => x);
+            var content = new[] {
+                "one",
+                "two",
+                "three",
+                "four",
+                "five",
+                "six",
+                "seven",
+                "eight",
+                "nine",
+                "ten"
+            };
+
+
+            tree.Insert(
+                new[] {
+                    "one",
+                    "two",
+                    "three",
+                    "four",
+                    "five",
+                    "six",
+                    "seven",
+                    "eight",
+                    "nine",
+                    "ten"
+                });
+            Console.WriteLine(tree.GetSortedAscending().Aggregate(string.Empty, (s, s1) => $"{s}:{s1}"));
+            DisplayTree(tree.DisplayTreeAsIs(), true);
         }
 
         private static void TestTreeLeftRight2() {
             var tree = new MyAvlTree<int, int>(x => x);
-            tree.Insert(new []{20, 16, 30, 14, 18});
+            tree.Insert(new[] {20, 16, 30, 14, 18});
             DisplayTree(tree.DisplayTreeAsIs());
             tree.Insert(19);
             DisplayTree(tree.DisplayTreeAsIs(), true);
 
             var result = tree.GetSortedAscending();
-            Console.WriteLine(result.Aggregate<int, string>(string.Empty, (line, newItem) => $"{line}:{newItem}"));
+            Console.WriteLine(
+                result.Aggregate<int, string>(string.Empty, (line, newItem) => $"{line}:{newItem}"));
             Console.ReadLine();
         }
 
