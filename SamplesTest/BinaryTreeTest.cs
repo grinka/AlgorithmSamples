@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AlgorithmSamples.BinaryTreeBalanced.AVLTree;
 using AlgorithmSamples.BinaryTreeBalanced.RedBlackTree;
 using AlgorithmSamples.BinaryTreeSort;
@@ -45,7 +44,7 @@ namespace SamplesTest {
             tree.Insert(7);
             var ret = tree.SortedAscending;
             var strRet = ret.Aggregate<int, string>(string.Empty, (s, item) => $"{s} {item}");
-            Assert.AreEqual("12 7 1 ", strRet);
+            Assert.AreEqual(" 1 7 12", strRet);
         }
 
         [TestMethod]
@@ -99,7 +98,8 @@ namespace SamplesTest {
         }
 
         [TestMethod]
-        [TestCategory("BinaryTree.AvlTree")]
+        [TestCategory("BinaryTree")]
+        [TestCategory("AvlTree")]
         public void AvlTreeTest1() {
             var tree = new AvlTree<string, string>((s) => s.ToLowerInvariant());
             tree.Insert(StringTreeInit);
@@ -111,12 +111,12 @@ namespace SamplesTest {
             Assert.AreEqual(SortedTreeResult, result);
         }
 
-        [TestMethod]
-        [TestCategory("BinaryTree")]
-        [TestCategory("RedBlackTree")]
-        public void RedBlackTreeTest1() {
-            var tree = new RedBlackTree<string, string>((s) => s);
-            tree.Insert(StringTreeInit);
-        }
+        //[TestMethod]
+        //[TestCategory("BinaryTree")]
+        //[TestCategory("RedBlackTree")]
+        //public void RedBlackTreeTest1() {
+        //    var tree = new RedBlackTree<string, string>((s) => s);
+        //    tree.Insert(StringTreeInit);
+        //}
     }
 }
