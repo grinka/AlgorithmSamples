@@ -12,6 +12,17 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
         private AvlNode Root;
         private int Quantity; // total nodes quantity
 
+        public delegate void DisplayTreeDelegate(MyAvlTree<T, TKey> tree);
+        public DisplayTreeDelegate DisplayTreeFunc { get; set; }
+
+        public delegate void DebugMessage(string message);
+        public DebugMessage DebugMessageHandler { get; set; }
+
+        public MyAvlTree(Func<T, TKey> keyFunc)
+        {
+            _keyFunc = keyFunc;
+        }
+
         /// <summary>
         /// Simply inserts the node into the tree. Recalculates balance and height.
         /// Executes <see cref="BalanceInsert"/> to rebalance the tree.
@@ -68,8 +79,9 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
                     }
                 }
             }
-
+            DisplayTreeFunc?.Invoke(this);
             RecalculateParentHeightAndBalance(current);
+            DisplayTreeFunc?.Invoke(this);
             BalanceInsert(current);
         }
 
@@ -94,13 +106,13 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             }
         }
 
-        public IEnumerable<T> GetSortedAscending() {
+        public T[] GetSortedAscending() {
             var retValue = new T[Quantity];
             AddChildNodesAsc(Root, ref retValue, 0);
             return retValue;
         }
 
-        public IEnumerable<T> GetSortedDescending()
+        public T[] GetSortedDescending()
         {
             var retValue = new T[Quantity];
             AddChildNodesDesc(Root, ref retValue, 0);
@@ -173,11 +185,12 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
                         break;
                 }
 
-                current = current.Parent;
+                current = saveParent;
             }
         }
 
         private void RotateRightRight(AvlNode node) {
+            DebugMessageHandler?.Invoke($"Rotate right, right node: {node.Value}");
             var top = node.Parent;
             if (top != null) {
                 if (node.IsLeftNode) {
@@ -191,11 +204,12 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             node.Right.Parent = top;
             var oldRightLeft = node.Right.Left;
             node.Right.Left = node;
-            node.Right = oldRightLeft;
             node.Parent = node.Right;
+            node.Right = oldRightLeft;
         }
 
         private void RotateLeftLeft(AvlNode node) {
+            DebugMessageHandler?.Invoke($"Rotate left, left node: {node.Value}");
             var top = node.Parent;
             if (top != null) {
                 if (node.IsLeftNode) {
@@ -209,11 +223,12 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             node.Left.Parent = top;
             var oldLeftRight = node.Left.Right;
             node.Left.Right = node;
-            node.Left = oldLeftRight;
             node.Parent = node.Left;
+            node.Left = oldLeftRight;
         }
 
         private void RotateRightLeft(AvlNode node) {
+            DebugMessageHandler?.Invoke($"Rotate right, left node: {node.Value}");
             var top = node.Parent;
             var newTop = node.Right.Left;
             var newLeft = node;
@@ -221,6 +236,9 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
 
             node.Right.Left = null;
             node.Right = newTop.Left;
+            if (newTop.Left != null) {
+                newTop.Left.Parent = node;
+            }
 
             if (top != null) {
                 if (node.IsLeftNode) {
@@ -236,6 +254,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
         }
 
         private void RotateLeftRight(AvlNode node) {
+            DebugMessageHandler?.Invoke($"Rotate left, right node: {node.Value}");
             var top = node.Parent;
             var newTop = node.Left.Right;
             var newLeft = node.Left;
@@ -243,6 +262,9 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
 
             node.Left.Right = null;
             node.Left = newTop.Right;
+            if (newTop.Right != null) {
+                newTop.Right.Parent = node;
+            }
 
             if (top != null) {
                 if (node.IsLeftNode) {
@@ -284,12 +306,13 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
                     lastLine = string.Empty;
                 }
                 if (current.Node != null) {
+                    var parentValue = current.Node.Parent?.Value.ToString() ?? "null";
                     lastLine +=
-                        $"({current.Node.Value}:{current.Node.Height}:{current.Node.Balance}) ";
+                        $"({current.Node.Value}|h:{current.Node.Height}|b:{current.Node.Balance}|p:{parentValue}) ";
                     queue.Enqueue(new NodeWithLevel(current.Node.Left, lastLevel + 1));
                     queue.Enqueue(new NodeWithLevel(current.Node.Right, lastLevel + 1));
                 } else {
-                    lastLine += "(_null_:0:0) ";
+                    lastLine += "(_null_) ";
                 }
             }
 
@@ -304,10 +327,6 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
                 Node = node;
                 Level = level;
             }
-        }
-
-        public MyAvlTree(Func<T, TKey> keyFunc) {
-            _keyFunc = keyFunc;
         }
 
         #region Compare methods
