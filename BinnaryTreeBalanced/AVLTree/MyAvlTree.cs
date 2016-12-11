@@ -18,6 +18,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
         /// </summary>
         /// <param name="value"></param>
         public void Insert(T value) {
+            Quantity++;
             if (Root == null) {
                 Root = new AvlNode {
                     Parent = null,
@@ -94,11 +95,35 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
         }
 
         public IEnumerable<T> GetSortedAscending() {
-            throw new NotImplementedException();
+            var retValue = new T[Quantity];
+            AddChildNodesAsc(Root, ref retValue, 0);
+            return retValue;
         }
 
-        public IEnumerable<T> GetSortedDescending() {
-            throw new NotImplementedException();
+        public IEnumerable<T> GetSortedDescending()
+        {
+            var retValue = new T[Quantity];
+            AddChildNodesDesc(Root, ref retValue, 0);
+            return retValue;
+        }
+
+        private int AddChildNodesAsc(AvlNode node, ref T[] dataCollector, int index) {
+            if (node == null) return index;
+            index = AddChildNodesAsc(node.Left, ref dataCollector, index);
+            dataCollector[index] = node.Value;
+            index++;
+            index = AddChildNodesAsc(node.Right, ref dataCollector, index);
+            return index;
+        }
+
+        private int AddChildNodesDesc(AvlNode node, ref T[] dataCollector, int index)
+        {
+            if (node == null) return index;
+            index = AddChildNodesDesc(node.Right, ref dataCollector, index);
+            dataCollector[index] = node.Value;
+            index++;
+            index = AddChildNodesDesc(node.Left, ref dataCollector, index);
+            return index;
         }
 
         private void BalanceInsert(AvlNode newNode) {
@@ -135,15 +160,12 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
                                 RotateRightRight(current);
                                 break;
                         }
-                        if (saveParent != null)
-                        {
+                        if (saveParent != null) {
                             // not a root note
                             RecalculateNodeHeightAndBalance(saveParent.Right.Right);
                             RecalculateNodeHeightAndBalance(saveParent.Right.Left);
                             RecalculateParentHeightAndBalance(saveParent.Left);
-                        }
-                        else
-                        {
+                        } else {
                             RecalculateNodeHeightAndBalance(Root.Right);
                             RecalculateNodeHeightAndBalance(Root.Left);
                             RecalculateNodeHeightAndBalance(Root);
@@ -167,8 +189,9 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
                 Root = node.Right;
             }
             node.Right.Parent = top;
+            var oldRightLeft = node.Right.Left;
             node.Right.Left = node;
-            node.Right = null;
+            node.Right = oldRightLeft;
             node.Parent = node.Right;
         }
 
@@ -184,8 +207,9 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
                 Root = node.Left;
             }
             node.Left.Parent = top;
+            var oldLeftRight = node.Left.Right;
             node.Left.Right = node;
-            node.Left = null;
+            node.Left = oldLeftRight;
             node.Parent = node.Left;
         }
 
@@ -196,7 +220,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             var newRight = node.Right;
 
             node.Right.Left = null;
-            node.Right = null;
+            node.Right = newTop.Left;
 
             if (top != null) {
                 if (node.IsLeftNode) {
@@ -218,7 +242,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             var newRight = node;
 
             node.Left.Right = null;
-            node.Left = null;
+            node.Left = newTop.Right;
 
             if (top != null) {
                 if (node.IsLeftNode) {
@@ -233,7 +257,11 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             ReassignVertexes(newTop, newLeft, newRight, top);
         }
 
-        private void ReassignVertexes(AvlNode newTop, AvlNode newLeft, AvlNode newRight, AvlNode topParent) {
+        private void ReassignVertexes(
+            AvlNode newTop,
+            AvlNode newLeft,
+            AvlNode newRight,
+            AvlNode topParent) {
             newTop.Parent = topParent;
             newTop.Left = newLeft;
             newTop.Right = newRight;

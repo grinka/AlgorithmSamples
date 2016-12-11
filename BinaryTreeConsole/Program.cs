@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AlgorithmSamples.BinaryTreeBalanced.AVLTree;
 using AlgorithmSamples.BinaryTreeBalanced.RedBlackTree;
 
@@ -9,69 +10,60 @@ namespace BinaryTreeConsole {
             //TestTreeAdding();
             //TestTreeBalanceRight();
             //TestTreeBalanceLeft();
-            TestTreeBalanceLeftRight();
-            TestTreeBalanceRightLeft();
+            TestTreeLeftRight2();
+            //TestTreeBalanceRightLeft();
+        }
+
+        private static void TestTreeLeftRight2() {
+            var tree = new MyAvlTree<int, int>(x => x);
+            tree.Insert(new []{20, 16, 30, 14, 18});
+            DisplayTree(tree.DisplayTreeAsIs());
+            tree.Insert(19);
+            DisplayTree(tree.DisplayTreeAsIs(), true);
+
+            var result = tree.GetSortedAscending();
+            Console.WriteLine(result.Aggregate<int, string>(string.Empty, (line, newItem) => $"{line}:{newItem}"));
+            Console.ReadLine();
         }
 
         private static void TestTreeBalanceLeftRight() {
             var tree = new MyAvlTree<int, int>((x) => x);
             tree.Insert(18);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
             tree.Insert(10);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
             tree.Insert(16);
-            DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
+            DisplayTree(tree.DisplayTreeAsIs(), true);
         }
 
         private static void TestTreeBalanceRightLeft() {
             var tree = new MyAvlTree<int, int>((x) => x);
             tree.Insert(10);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
             tree.Insert(18);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
             tree.Insert(16);
-            DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
-
+            DisplayTree(tree.DisplayTreeAsIs(), true);
         }
 
         private static void TestTreeBalanceLeft() {
             var tree = new MyAvlTree<int, int>((x) => x);
             tree.Insert(18);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(16);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(10);
-            DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
+            DisplayTree(tree.DisplayTreeAsIs(), true);
         }
 
         private static void TestTreeBalanceRight() {
             var tree = new MyAvlTree<int, int>((x) => x);
             tree.Insert(10);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(16);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(18);
-            DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
+            DisplayTree(tree.DisplayTreeAsIs(), true);
         }
 
         private static void TestTreeAdding() {
@@ -79,36 +71,32 @@ namespace BinaryTreeConsole {
             tree.Insert(7);
             tree.Insert(3);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(18);
             tree.Insert(10);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(22);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(8);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(11);
             DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.ReadKey();
             tree.Insert(26);
-            DisplayTree(tree.DisplayTreeAsIs());
-            Console.WriteLine("-----------------------------------------------------");
-            Console.WriteLine("Fin");
-            Console.ReadKey();
+            DisplayTree(tree.DisplayTreeAsIs(), true);
         }
 
-        static void DisplayTree(IList<string> treeView) {
+        static void DisplayTreeOnly(IList<string> treeView) {
             foreach (var treeLine in treeView) {
                 Console.WriteLine(treeLine);
             }
+        }
+
+        static void DisplayTree(IList<string> treeView, bool isFin = false) {
+            DisplayTreeOnly(treeView);
+            Console.WriteLine("-----------------------------------------------------");
+            if (isFin) {
+                Console.WriteLine("Fin");
+            }
+            Console.ReadKey();
         }
     }
 }
