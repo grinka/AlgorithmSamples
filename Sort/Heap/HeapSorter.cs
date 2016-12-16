@@ -9,6 +9,7 @@ namespace Algorithm.Sort.Heap {
 
         public HeapSorter(T[] initArray) : base(initArray) {}
 
+        /// <inheritdoc cref="SorterBase{T}.GetSorted"/>
         public override T[] GetSorted() {
             BuildHeap();
             for (var i = Container.Length - 1; i >= 0; i--) {
@@ -20,6 +21,10 @@ namespace Algorithm.Sort.Heap {
             return Container;
         }
 
+        /// <summary>
+        /// Initially build the heap from the array.
+        /// Uses same array - it will be changed. No additional memory needed.
+        /// </summary>
         private void BuildHeap() {
             _heapSize = Container.Length - 1;
             for (var i = _heapSize/2; i >= 0; i--) {
@@ -27,6 +32,10 @@ namespace Algorithm.Sort.Heap {
             }
         }
 
+        /// <summary>
+        /// Heapify the given item and it's "children" elements.
+        /// </summary>
+        /// <param name="index"></param>
         private void Heapify(int index) {
             var left = 2*index;
             var right = left + 1;

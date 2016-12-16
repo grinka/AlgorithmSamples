@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/.idea/.idea.AlgorithmSamples
+/FastestSorts.Vb/My Project
+/SetBitTest/Properties/AssemblyInfo.cs
+/AlgorithmTestConsole/Properties/AssemblyInfo.cs
