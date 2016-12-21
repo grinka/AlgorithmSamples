@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetBitTest", "SetBitTest\Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmTestConsole", "AlgorithmTestConsole\AlgorithmTestConsole.csproj", "{AAA8ECF1-ED25-4BB7-9F5E-022F8BB1C789}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContainer", "DataContainer\DataContainer.csproj", "{C1AC8246-E2C2-4DB5-B18E-6E93D0D89518}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{AAA8ECF1-ED25-4BB7-9F5E-022F8BB1C789}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAA8ECF1-ED25-4BB7-9F5E-022F8BB1C789}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAA8ECF1-ED25-4BB7-9F5E-022F8BB1C789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1AC8246-E2C2-4DB5-B18E-6E93D0D89518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1AC8246-E2C2-4DB5-B18E-6E93D0D89518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1AC8246-E2C2-4DB5-B18E-6E93D0D89518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1AC8246-E2C2-4DB5-B18E-6E93D0D89518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,5 +109,6 @@ Global
 		{07D6A080-C707-4380-B7D3-5D2408552563} = {7C2EA9B0-715F-4CB9-948E-22D0F0B3853E}
 		{7BE6960C-5EB3-4DBB-A9A2-5F45B1B27F9E} = {35465D71-B926-4453-8F9D-5C2E687D5672}
 		{AAA8ECF1-ED25-4BB7-9F5E-022F8BB1C789} = {35465D71-B926-4453-8F9D-5C2E687D5672}
+		{C1AC8246-E2C2-4DB5-B18E-6E93D0D89518} = {35465D71-B926-4453-8F9D-5C2E687D5672}
 	EndGlobalSection
 EndGlobal

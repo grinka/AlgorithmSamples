@@ -11,10 +11,18 @@ namespace Algorithm.Sort.Selection {
     /// </summary>
     /// <typeparam name="T">Type of the values to be sorted.</typeparam>
     public class SelectionSorter<T> : SorterBase<T> where T : IComparable {
+        /// <summary>
+        /// Base constructor. Initializes the empty class with empty data container.
+        /// </summary>
         public SelectionSorter() {}
 
+        /// <summary>
+        /// Base constructor. Initializes the container with initial data array.
+        /// </summary>
+        /// <param name="initArray">Data array, contains all the elements for initializing.</param>
         public SelectionSorter(T[] initArray) : base(initArray) {}
 
+        /// <inheritdoc cref="ISorter{T}.GetSorted"/>
         public override T[] GetSorted() {
             for (var mainIndex = 0; mainIndex < Container.Length - 1; mainIndex++) {
                 var minIndex = mainIndex;

@@ -12,6 +12,8 @@ namespace BinaryTreeConsole {
             //TestTreeBalanceLeft();
             MyAvlTreeStrings();
             //TestTreeBalanceRightLeft();
+            Console.WriteLine("fin");
+            Console.ReadLine();
         }
 
         private static void DisplayDebugTree(MyAvlTree<string, string> tree) {
@@ -48,7 +50,11 @@ namespace BinaryTreeConsole {
                     "ten"
                 });
             Console.WriteLine(tree.GetSortedAscending().Aggregate(string.Empty, (s, s1) => $"{s}:{s1}"));
-            DisplayTree(tree.DisplayTreeAsIs(), true);
+            //DisplayTree(tree.DisplayTreeAsIs(), true);
+            foreach(var treeValue in tree.GetSortedEnumerable2()) {
+                Console.Write($"{treeValue}:");
+            }
+            Console.WriteLine();
         }
 
         private static void TestTreeLeftRight2() {

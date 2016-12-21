@@ -53,7 +53,7 @@
     ///     Step 6.2: index == 6, value == 12. 12 is smaller than 14. Copy the saved value to the next position
     ///         [4,5,6,8,9,12,14,83]
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type of the items to be soretd. Should implement <see cref="IComparable"/>.</typeparam>
     public class InsertionSorter<T> : SorterBase<T> where T : IComparable {
         /// <summary>
         /// Simple primitive constructor.
@@ -61,9 +61,14 @@
         public InsertionSorter() {
         }
 
+        /// <summary>
+        /// Constructs the new instance of the sorter with some initial data.
+        /// </summary>
+        /// <param name="initData">Initial data array.</param>
         public InsertionSorter(T[] initData) : base(initData) {
         }
 
+        /// <inheritdoc cref="ISorter{T}.GetSorted"/>
         public override T[] GetSorted() {
             for(var mainIndex = 1; mainIndex < Container.Length; mainIndex++) {
                 if(IsSmaller(mainIndex, mainIndex - 1)) {

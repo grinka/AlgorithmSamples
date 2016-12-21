@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Data.SqlTypes;
+using System.Runtime.InteropServices;
 
 namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
     using System;
@@ -106,6 +107,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             }
         }
 
+        #region Get Sorted Results
         public T[] GetSortedAscending() {
             var retValue = new T[Quantity];
             AddChildNodesAsc(Root, ref retValue, 0);
@@ -118,6 +120,90 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             AddChildNodesDesc(Root, ref retValue, 0);
             return retValue;
         }
+
+        public IEnumerable<T> GetSortedEnumerable2() {
+            if(Root == null) {
+                yield break;
+            }
+
+            Func<AvlNode, AvlNode> findMin = (node) => {
+                var minNode = node;
+                while(minNode?.Left != null) {
+                    minNode = minNode.Left;
+                }
+                return minNode;
+            };
+
+            Func<AvlNode, AvlNode> successor = (node) => {
+                if(node.Right != null) {
+                    return findMin(node.Right);
+                }
+                var successorP = node;
+                while(successorP.Parent != null && successorP.Parent.Right == successorP) {
+                    successorP = successorP.Parent;
+                }
+
+                return successorP.Parent;
+            };
+
+            var p = findMin(Root);
+            while(p != null) {
+                yield return p.Value;
+                p = successor(p);
+            }
+
+        }
+        /// <summary>
+        /// Get the ordered list of the tree nodes as a IEnumerable.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<T> GetSortedEnumerable() {
+            if(Root == null) {
+                yield break;
+            }
+
+            var p = FindMin(Root);
+            while(p != null) {
+                yield return p.Value;
+                p = Successor(p);
+            }
+        }
+
+        /// <summary>
+        /// Finds the minimum value node in the subtree of the current node.
+        /// </summary>
+        /// <param name="node">The subtree parent node.</param>
+        /// <returns>Most left child of the parent node - it will be the minimum value node in the subtree.</returns>
+        private static AvlNode FindMin(AvlNode node) {
+            while(node?.Left != null) {
+                node = node.Left;
+            }
+            return node;
+        }
+
+        /// <summary>
+        /// Gets the successor of the current node.
+        /// If the right child of the node exists, parse the right subtree.
+        /// Else if current node is the right child of the parent, move up by the tree until
+        /// the current node is the left child of the parent node.
+        /// Return the parent of the current node. It will be the real parent which has current node
+        /// as a left child or null if current node is the root.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private static AvlNode Successor(AvlNode node) {
+            if(node.Right != null) {
+                return FindMin(node.Right);
+            }
+            var p = node;
+            while(p.Parent != null && p.Parent.Right == p) {
+                p = p.Parent;
+            }
+
+            return p.Parent;
+        }
+
+        #endregion
 
         private int AddChildNodesAsc(AvlNode node, ref T[] dataCollector, int index) {
             if (node == null) return index;
@@ -189,6 +275,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             }
         }
 
+        #region Rotation Methods
         private void RotateRightRight(AvlNode node) {
             DebugMessageHandler?.Invoke($"Rotate right, right node: {node.Value}");
             var top = node.Parent;
@@ -290,7 +377,7 @@ namespace AlgorithmSamples.BinaryTreeBalanced.AVLTree {
             newLeft.Parent = newTop;
             newRight.Parent = newTop;
         }
-
+        #endregion
         public string[] DisplayTreeAsIs() {
             var queue = new Queue<NodeWithLevel>();
             var lastLevel = 0;
