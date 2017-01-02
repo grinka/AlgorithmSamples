@@ -35,18 +35,17 @@ function juggle(data, dist) {
                 k -= n;
             }
             if (k !== idx) {
-                ret = setCharAt(ret, j, ret[k]);
-                console.log("Moved %s", ret);
+                ret[j] = ret[k];
                 j = k;
             }
         } while (k !== idx);
-        ret = setCharAt(ret, j, temp);
+        ret[j] = temp;
     }
     return ret;
 }
 function main() {
     console.log("abcdef");
-    console.log(juggle("abcdef", 2));
+    console.log(juggle(["a", "b", "c", "d", "e", "f"], 2));
     //console.log(gcd(8, 3));
     //console.log(gcd(8, 4));
     //console.log(gcd(6, 9));

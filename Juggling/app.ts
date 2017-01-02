@@ -22,7 +22,7 @@ var setCharAt = (s: string, idx: number, char: string) => {
     }
 }
 
-function juggle(data: string, dist: number): string {
+function juggle(data: string[], dist: number): string[] {
     const n = data.length;
     let ret = data;
     let maxN = gcd(n, dist);
@@ -37,19 +37,18 @@ function juggle(data: string, dist: number): string {
                 k -= n;
             }
             if (k !== idx) {
-                ret = setCharAt(ret, j, ret[k]);
-                console.log("Moved %s", ret);
+                ret[j] = ret[k];
                 j = k;
             }
         } while (k !== idx)
-        ret = setCharAt(ret, j, temp);
+        ret[j] = temp;
     }
     return ret;
 }
 
 function main(): void {
     console.log("abcdef");
-    console.log(juggle("abcdef", 2));
+    console.log(juggle(["a", "b","c","d","e","f"], 2));
     //console.log(gcd(8, 3));
     //console.log(gcd(8, 4));
     //console.log(gcd(6, 9));
