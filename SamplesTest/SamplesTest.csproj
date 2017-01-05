@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="SimpleAlgorithmTest.cs" />
     <Compile Include="SorterTest.cs" />
     <Compile Include="BinaryTreeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +72,10 @@
     <ProjectReference Include="..\CommonExtensions\CommonExtensions.csproj">
       <Project>{6b6a14b6-06a1-40a5-8857-e10e944b7ea1}</Project>
       <Name>CommonExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleAlgorithms\SimpleAlgorithms.csproj">
+      <Project>{3fc78901-0ae4-47de-982c-5fb375a063b1}</Project>
+      <Name>SimpleAlgorithms</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sort\Sort.csproj">
       <Project>{1aa2010f-db6f-4bc1-be36-5e2f0126d7ab}</Project>

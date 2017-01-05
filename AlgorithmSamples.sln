@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContainer", "DataContai
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Juggling", "Juggling\Juggling.njsproj", "{A1234B23-2258-4760-9038-3087ED7EDD40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAlgorithms", "SimpleAlgorithms\SimpleAlgorithms.csproj", "{3FC78901-0AE4-47DE-982C-5FB375A063B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{A1234B23-2258-4760-9038-3087ED7EDD40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1234B23-2258-4760-9038-3087ED7EDD40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1234B23-2258-4760-9038-3087ED7EDD40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC78901-0AE4-47DE-982C-5FB375A063B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC78901-0AE4-47DE-982C-5FB375A063B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC78901-0AE4-47DE-982C-5FB375A063B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC78901-0AE4-47DE-982C-5FB375A063B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,5 +116,6 @@ Global
 		{AAA8ECF1-ED25-4BB7-9F5E-022F8BB1C789} = {35465D71-B926-4453-8F9D-5C2E687D5672}
 		{C1AC8246-E2C2-4DB5-B18E-6E93D0D89518} = {35465D71-B926-4453-8F9D-5C2E687D5672}
 		{A1234B23-2258-4760-9038-3087ED7EDD40} = {35465D71-B926-4453-8F9D-5C2E687D5672}
+		{3FC78901-0AE4-47DE-982C-5FB375A063B1} = {35465D71-B926-4453-8F9D-5C2E687D5672}
 	EndGlobalSection
 EndGlobal
